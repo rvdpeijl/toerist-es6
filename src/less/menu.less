@@ -1,0 +1,35 @@
+#menu {
+	h1.category-title {
+		display: inline-block;
+		border-bottom: 1px solid @black;
+		margin-bottom: 1em;
+	}
+
+	.btn {
+		margin-bottom: 5px;
+	}
+
+	.box	.btn:not(:last-of-type) {
+		margin-right: 5px;
+	}
+
+	.menu-items {
+		.menu-item {
+			font-size: 1.5em;
+
+			span.title {
+				display: inline-block;
+				max-width: 260px;
+			}
+
+			span.price {
+				color: @red;
+				float: right;
+			}
+
+			&:not(:last-of-type) {
+				margin-bottom: 1.5em;
+			}
+		}
+	}
+}
