@@ -6,6 +6,7 @@ import Navigation from 'js/components/Navigation'
 import Home from 'js/components/Home'
 import Menu from 'js/components/Menu'
 import Impressie from 'js/components/Impressie'
+import Contact from 'js/components/Contact'
 
 import 'less/main.less'
 
@@ -28,6 +29,7 @@ render((
 			<IndexRoute component={Home}/>
 			<Route path="menu" component={Menu}/>
 			<Route path="impressie" component={Impressie}/>
+			<Route path="contact" component={Contact}/>
 		</Route>
 	</Router>
 ), document.getElementById('root'))

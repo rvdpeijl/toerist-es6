@@ -52,4 +52,86 @@ nav.navigation {
 			color: @black !important;
 		}
 	}
+
+	@media @portrait-tablet {
+		background-image: none;
+		height: 270px;
+
+		.logo {
+			max-width: 80vw;
+		}
+
+		ul.navbar {
+			position: relative;
+			display: block;
+			top: 175px;
+
+			&.left {
+				left: auto;
+				transform: none;
+				margin-bottom: 10px;
+			}
+
+			&.right {
+				right: auto;
+				transform: none;
+			}
+
+			li {
+				height: 40px;
+				width: 150px;
+				background-color: @black;
+				position: relative;
+
+				&:not(:last-of-type) {
+					margin-right: 10px;
+				}
+
+				a {
+					position: absolute; 
+					left: 0; 
+					bottom: 0;
+					top: 0;
+					right: 0;
+					text-align: center;
+					line-height: 40px;
+
+					color: #fff;
+				}
+
+				a:hover {
+					color: #fff !important;
+				}
+			}
+
+			li:after {
+				content: none;
+			}
+		}
+
+		a.logo-link {
+			position: absolute;
+			top: 0;
+			transform: translate(-50%, 0);
+		}
+	}
+
+	@media @phone {
+		height: 360px;
+		ul.navbar {
+			display: block;
+			padding-left: 10vw;
+			padding-right: 10vw;
+
+			li {
+				width: 100%;
+				display: block;
+				margin-bottom: 5px;
+			}
+		}
+
+		ul.navbar.left {
+			margin-bottom: 0;
+		}
+	}
 }

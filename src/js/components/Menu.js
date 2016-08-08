@@ -59,7 +59,6 @@ class Menu extends React.Component {
 		var content = <div/>
 		if (this.state.selectedCategory) {
 			var category = _.findWhere(this.state.categories, { id: this.state.selectedCategory })
-			console.log(category)
 			content = (
 				<div className="content">
 					<h1 className="category-title">{category.title}</h1>

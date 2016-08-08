@@ -19,10 +19,18 @@ class Impressie extends React.Component {
 	}
 
 	render() {
-		var content = <div/>
+		let content = <div/>
 
 		if (this.state.images.length) {
-			content = <div>impressiseeeeee</div>
+			content = (
+				<div className="image-list">
+					{
+						this.state.images.map((image, key) => {
+							return <img key={key} src={image.fields.file.url}/>
+						})
+					}
+				</div>
+			)
 		}
 
 		return(

@@ -10,7 +10,7 @@ class Navigation extends React.Component {
 					<li><Link className="red" to="/menu">Menu</Link></li>
 				</ul>
 
-				<Link to="/">
+				<Link className="logo-link" to="/">
 					<img className="logo" src="/img/logo-new-white.png"/>
 				</Link>
 

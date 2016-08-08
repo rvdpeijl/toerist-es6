@@ -3,6 +3,10 @@
 		display: inline-block;
 		border-bottom: 1px solid @black;
 		margin-bottom: 1em;
+
+		@media @tablet {
+			font-size: 1.5em;
+		}
 	}
 
 	.btn {
@@ -17,9 +21,12 @@
 		.menu-item {
 			font-size: 1.5em;
 
+			@media @tablet { font-size: 1em; }
+
 			span.title {
 				display: inline-block;
-				max-width: 260px;
+				max-width: 70%;
+				// @media (max-width: 1024px) { max-width: 70%; }
 			}
 
 			span.price {
