@@ -2,7 +2,7 @@ import React from 'react'
 import $ from 'jquery'
 import _ from 'underscore'
 
-const menuItemsUrl = "https://cdn.contentful.com/spaces/jwvrc23eb62u/entries?access_token=90879b907d5159e5b032b9a98f3fa93c5e40f0315a5c48a5e169a2e5e0eb4a01"
+const menuItemsUrl = "http://37.139.9.149:3000/api/v1/all"
 
 class Menu extends React.Component {
 	constructor(props) {
@@ -15,36 +15,11 @@ class Menu extends React.Component {
 	}
 
 	componentWillMount() {
-		var menuItems  = []
-		var categories = []
-
 		$.get(menuItemsUrl, (data) => {
-			data.items.forEach(function(item) {
-				if (item.fields.hasOwnProperty("category")) {
-					menuItems.push(item.fields)
-				} else {
-					categories.push({ fields: item.fields, id: item.sys.id })
-				}
-			})
-		}).done(() => {
-			categories = categories.filter((category) => {
-				return !category.fields.hasOwnProperty('price')
-			})
-
-			var combined = _.chain(menuItems)
-				.groupBy((item) => { 
-					return item.category.sys.id })
-				.map((items, key) => {
-					var category = _.findWhere(categories, { id: key })
-					return { id: key, title: category.fields.title, items: items, order: category.fields.order }
-				})
-				.sortBy('order')
-				.value()
-
 			this.setState({
-				categories: combined
-			})
-		})
+				categories: data
+			});
+		});
 	}
 
 	selectCategory(categoryId) {
@@ -58,17 +33,17 @@ class Menu extends React.Component {
 	render() {
 		var content = <div/>
 		if (this.state.selectedCategory) {
-			var category = _.findWhere(this.state.categories, { id: this.state.selectedCategory })
+			var category = _.findWhere(this.state.categories, { _id: this.state.selectedCategory })
 			content = (
 				<div className="content">
-					<h1 className="category-title">{category.title}</h1>
+					<h1 className="category-title">{category.name}</h1>
 					<div className="menu-items">
 						{
-							category.items.map((item, key) => {
+							category.products.map((product, key) => {
 								return (
 									<div key={key} className="menu-item">
-										<span className="title">{item.title}</span>
-										<span className="price">{item.price.toLocaleString('nl-NL', { style: 'currency', currency: 'EUR' })}</span>
+										<span className="title">{product.name}</span>
+										<span className="price">{product.price.toLocaleString('nl-NL', { style: 'currency', currency: 'EUR' })}</span>
 									</div>)
 							})
 						}
@@ -83,7 +58,7 @@ class Menu extends React.Component {
 					<h1 className="heading">Menu</h1>
 					{
 						this.state.categories.map((category) => {
-							return <div key={category.id} className="btn btn-black btn-medium" onClick={this.selectCategory.bind(this, category.id)}>{category.title}</div>
+							return <div key={category._id} className="btn btn-black btn-medium" onClick={this.selectCategory.bind(this, category._id)}>{category.name}</div>
 						})
 					}
 
